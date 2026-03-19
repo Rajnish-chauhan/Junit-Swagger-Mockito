@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/students")
+
+@RestController
+
+@RequestMapping("/api/students")
 public class StudentController {
     @Autowired
     public StudentService studentService;
@@ -19,6 +22,7 @@ public class StudentController {
 
     @PostMapping
     public Student create(@RequestBody Student student){
+        System.out.println("Calling by Test");
         return  studentService.addStudent(student);
     }
 

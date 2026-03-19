@@ -2,19 +2,17 @@ package com.testing.test_demo.controller;
 
 import com.testing.test_demo.entity.Student;
 import com.testing.test_demo.repo.StudentRepo;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.ObjectMapper;
-import static org.springframework.http.RequestEntity.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,13 +24,14 @@ public class StudentControllerTest {
     @Autowired
     private StudentRepo repo;
 
-    @Autowired
-    private ObjectMapper mapper;
-
     @BeforeEach
     void cleanDB(){
         repo.deleteAll();
     }
+    @Autowired
+    private ObjectMapper mapper;
+
+
 
     @Test
     void shouldCreateStudent() throws Exception{
@@ -44,4 +43,6 @@ public class StudentControllerTest {
                 .andExpect(jsonPath("$.name").value("test"));
 
     }
+
+
 }

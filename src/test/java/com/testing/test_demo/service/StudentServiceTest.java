@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-public class StudentControllerTest {
+public class StudentServiceTest {
 
     @Autowired
     private StudentRepo studentRepo;
